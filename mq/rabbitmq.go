@@ -1,15 +1,20 @@
 package mq
 
 import (
-	"com.jxtech.gather/config"
-	"com.jxtech.gather/gerr"
 	"fmt"
+	"github.com/smellok/gather/config"
+	"github.com/smellok/gather/gerr"
 	"github.com/streadway/amqp"
 )
 
 var _conn amqp.Connection
 
-func init() {
+func StarMQService() {
+	fmt.Println("开启MQ服务")
+	initMQService()
+}
+
+func initMQService() {
 	fmt.Println("开始RabbitMQ初始化")
 	param := config.Get()
 	amqpUrl := fmt.Sprintf("%s%s:%s@%s:%d/%s",
@@ -67,5 +72,5 @@ func createAndBindQueue(ch *amqp.Channel, exchangeName string, routes []string, 
 }
 
 func handlerMessage(ch *amqp.Channel) {
-	ch.Consume()
+	//ch.Consume()
 }

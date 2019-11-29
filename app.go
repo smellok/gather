@@ -1,11 +1,18 @@
 package main
 
 import (
-	"com.jxtech.gather/config"
-	_ "com.jxtech.gather/mq"
-	"fmt"
+	"github.com/smellok/gather/handler"
+	"github.com/smellok/gather/mq"
 )
 
 func main() {
-	fmt.Printf("RabbitMQ参数读取：%s\n", config.Get().RabbitMQ.User)
+
+	var deviceHandler mq.HandlerIFace = &handler.CmsDeviceHandler{}
+
+	deviceConsumer := &mq.RabbitMQConsumer{
+		QueueName: "queueAlarmCMS",
+		RouterKey: "cms.alarm.#",
+		Handlers:  []*mq.HandlerIFace{&deviceHandler},
+	}
+	print(deviceConsumer)
 }

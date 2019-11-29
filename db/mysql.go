@@ -1,10 +1,10 @@
 package db
 
 import (
-	"com.jxtech.gather/config"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/smellok/gather/config"
 	"time"
 )
 
