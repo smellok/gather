@@ -1,5 +1,5 @@
 package mq
 
 type HandlerIFace interface {
-	HandleMessage()
+	HandleMessage(msg []byte)
 }
